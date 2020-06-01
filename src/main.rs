@@ -1,8 +1,6 @@
 mod game;
-use game::Game;
+use game::table::Game;
 
 fn main() {
-    println!("Hello, world!");
-
     let _g = Game::new();
 }

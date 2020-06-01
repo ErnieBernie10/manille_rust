@@ -1,15 +1,6 @@
 mod player;
-use player::Player;
+mod deck;
+mod card;
+pub mod table;
 
 
-pub struct Game {
-    pub players: [Player; 2]
-}
-
-impl Game {
-    pub fn new() -> Game {
-        Game {
-            players: [Player::new(), Player::new()]
-        }
-    }
-}
