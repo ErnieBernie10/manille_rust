@@ -5,7 +5,6 @@ pub struct Player {
 }
 
 impl Player {
-
     pub fn new() -> Player {
         Player {
             id: Uuid::new_v4()
