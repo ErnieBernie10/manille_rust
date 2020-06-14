@@ -32,4 +32,8 @@ impl Player {
             self.visible.add_card(card);
         }
     }
+    
+    pub fn to_string(&self) -> String {
+        format!("{}{}", self.hand.to_string(), self.visible.to_string())
+    }
 }

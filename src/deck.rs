@@ -57,4 +57,12 @@ impl Hand {
     pub fn len(&self) -> usize {
         self.cards.len()
     }
+
+    pub fn to_string(&self) -> String {
+        let mut cards = String::new();
+        for card in &self.cards {
+            cards.push_str(&card.to_string())
+        }
+        cards
+    }
 }

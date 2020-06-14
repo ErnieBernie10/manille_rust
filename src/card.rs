@@ -12,4 +12,8 @@ impl Card {
             points: "".to_string()
         }
     }
+
+    pub fn to_string(&self) -> String {
+        String::from(format!("[{}{}]", self.suit, self.rank))
+    }
 }
