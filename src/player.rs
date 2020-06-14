@@ -1,6 +1,6 @@
 use uuid::Uuid;
-use super::deck::Hand;
-use super::deck::Card;
+use crate::deck::Hand;
+use crate::card::Card;
 
 pub struct Player {
     id: Uuid,

@@ -1,5 +1,5 @@
-use super::player::Player;
-use super::deck::FullDeck;
+use crate::player::Player;
+use crate::deck::FullDeck;
 
 pub struct Game {
     pub players: [Player; 2]
@@ -28,5 +28,9 @@ impl Game {
                 self.players[1].give_card(card);
             }
         }
+    }
+
+    pub fn start(&self) {
+        
     }
 }

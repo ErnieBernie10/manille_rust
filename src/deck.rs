@@ -1,6 +1,5 @@
-pub mod card;
 use std::collections::VecDeque;
-pub use card::Card;
+use crate::card::Card;
 use rand::thread_rng;
 use rand::seq::SliceRandom;
 
