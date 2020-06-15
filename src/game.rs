@@ -43,10 +43,18 @@ impl<IH: InputHandler> Game<IH> {
         }
     }
 
-    pub fn start(&self) {
+    fn next(&mut self) {
+        if self.current_player_index >= 1 {
+            self.current_player_index = 0;
+        } else {
+            self.current_player_index += 1;
+        }
+    }
+
+    pub fn start(&mut self) {
         loop {
             self.input_handler.select_card(self.current_player());
-            break;
+            self.next();
         }
     }
 }

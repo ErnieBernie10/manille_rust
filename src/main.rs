@@ -10,6 +10,6 @@ use input_handler::InputHandler;
 fn main() {
     // let games: Vec<Game> = create_games(10000);
     let player_input_handler = PlayerInputHandler::new();
-    let game: Game<PlayerInputHandler> = Game::new(player_input_handler);
+    let mut game: Game<PlayerInputHandler> = Game::new(player_input_handler);
     game.start();
 }
