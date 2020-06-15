@@ -1,6 +1,6 @@
 use crate::player::Player;
 use crate::deck::FullDeck;
-use std::io::{stdin,stdout,Write};
+use crate::input_handler::InputHandler;
 
 pub struct Game<IH: InputHandler> {
     pub players: [Player; 2],
@@ -8,27 +8,6 @@ pub struct Game<IH: InputHandler> {
     pub input_handler: IH
 }
 
-pub trait InputHandler {
-    fn new() -> Self;
-    fn select_card(&self, player: &Player);
-}
-
-pub struct PlayerInputHandler {  }
-
-impl InputHandler for PlayerInputHandler {
-    fn new() -> Self {
-        PlayerInputHandler {
-        }
-    }
-
-    fn select_card(&self, player: &Player) {
-        let mut s = String::new();
-        println!("{}", player.to_string());
-        println!("Pick a card to play");
-        stdin().read_line(&mut s).expect("Did not enter a correct string");
-        println!("{}", s);
-    }
-}
 
 impl<IH: InputHandler> Game<IH> {
     pub fn new(input_handler: IH) -> Self {
