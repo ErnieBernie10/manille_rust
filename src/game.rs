@@ -2,21 +2,45 @@ use crate::player::Player;
 use crate::deck::FullDeck;
 use std::io::{stdin,stdout,Write};
 
-pub struct Game {
+pub struct Game<IH: InputHandler> {
     pub players: [Player; 2],
-    pub current_player_index: usize
+    pub current_player_index: usize,
+    pub input_handler: IH
 }
 
-impl Game {
-    pub fn new() -> Game {
+pub trait InputHandler {
+    fn new() -> Self;
+    fn select_card(&self, player: &Player);
+}
+
+pub struct PlayerInputHandler {  }
+
+impl InputHandler for PlayerInputHandler {
+    fn new() -> Self {
+        PlayerInputHandler {
+        }
+    }
+
+    fn select_card(&self, player: &Player) {
+        let mut s = String::new();
+        println!("{}", player.to_string());
+        println!("Pick a card to play");
+        stdin().read_line(&mut s).expect("Did not enter a correct string");
+        println!("{}", s);
+    }
+}
+
+impl<IH: InputHandler> Game<IH> {
+    pub fn new(input_handler: IH) -> Self {
         let full_deck = FullDeck::generate_new();
 
         let player1 = Player::new();
         let player2 = Player::new();
 
-        let mut game = Game {
+        let mut game = Game::<IH> {
             players: [player1, player2],
-            current_player_index: 0
+            current_player_index: 0,
+            input_handler
         };
         game.distribute_cards(full_deck);
 
@@ -41,12 +65,8 @@ impl Game {
     }
 
     pub fn start(&self) {
-        let mut s = String::new();
         loop {
-            println!("{}", self.current_player().to_string());
-            println!("Pick a card to play\n");
-            stdin().read_line(&mut s).expect("Did not enter a correct string");
-            println!("{}", s);
+            self.input_handler.select_card(self.current_player());
             break;
         }
     }
